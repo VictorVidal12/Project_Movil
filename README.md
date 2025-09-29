@@ -21,3 +21,9 @@ Arquitectura:
 Notas:
 - Búsqueda: implementada localmente filtrando por `title`.
 - Validaciones: el formulario valida campos obligatorios, como el precio.
+
+
+Link del video de muestra:
+https://www.youtube.com/watch?v=_4IyujA6GI8
+
+
