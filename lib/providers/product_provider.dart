@@ -60,9 +60,9 @@ class ProductProvider extends ChangeNotifier {
     status = Status.loading;
     notifyListeners();
     try {
-      final data = await _api.searchProducts(q, limit: _limit);
+      final data = await _api.searchProducts(q, limit: 1000);
       products = data;
-      hasMore = false;
+      hasMore = data.length == 1000;
       status = Status.success;
       notifyListeners();
     } catch (e) {

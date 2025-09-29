@@ -25,7 +25,7 @@ class ApiService {
     throw Exception('Failed to fetch product with id $id (status ${res.statusCode})');
   }
 
-  Future<List<Product>> searchProducts(String q, {int limit = 100}) async {
+  Future<List<Product>> searchProducts(String q, {int limit = 1000}) async {
     final query = q.trim();
     if (query.isEmpty) return [];
 
