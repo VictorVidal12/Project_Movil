@@ -57,14 +57,12 @@ class _ProductFormScreenState extends State<ProductFormScreen> {
       } else {
         await prov.updateProduct(prod);
       }
-      // si el provider actualiza status, navegamos; si no, fallback a pop
       if (prov.status == Status.success) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text(widget.product == null ? 'Producto creado' : 'Producto actualizado')),
         );
         Navigator.pop(context);
       } else {
-        // mostrar error si el provider lo dejó
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text("Error: ${prov.errorMessage ?? 'Error desconocido'}")),
         );
@@ -114,21 +112,18 @@ class _ProductFormScreenState extends State<ProductFormScreen> {
                   child: ListView(
                     shrinkWrap: true,
                     children: [
-                      // Nota sobre campos obligatorios
                       Align(
                         alignment: Alignment.centerLeft,
                         child: Text('Campos con * son obligatorios', style: theme.textTheme.bodySmall),
                       ),
                       const SizedBox(height: 12),
 
-                      // Título
                       _fieldLabel('Título', required: true),
                       const SizedBox(height: 8),
                       TextFormField(
                         controller: _title,
                         decoration: InputDecoration(
                           hintText: 'Nombre del producto',
-                          // usamos el InputDecorationTheme global (filled, padding, border)
                         ),
                         validator: (v) {
                           if (v == null || v.trim().isEmpty) return 'El título es obligatorio';
@@ -138,7 +133,6 @@ class _ProductFormScreenState extends State<ProductFormScreen> {
                       ),
                       const SizedBox(height: 12),
 
-                      // Descripción
                       _fieldLabel('Descripción'),
                       const SizedBox(height: 8),
                       TextFormField(
@@ -147,7 +141,6 @@ class _ProductFormScreenState extends State<ProductFormScreen> {
                         minLines: 3,
                         maxLines: 5,
                         validator: (v) {
-                          // descripción opcional pero si existe, chequeamos longitud
                           if (v != null && v.trim().isNotEmpty && v.trim().length < 5) {
                             return 'Descripción demasiado breve';
                           }
@@ -156,7 +149,6 @@ class _ProductFormScreenState extends State<ProductFormScreen> {
                       ),
                       const SizedBox(height: 12),
 
-                      // Precio
                       _fieldLabel('Precio', required: true),
                       const SizedBox(height: 8),
                       TextFormField(
@@ -173,7 +165,6 @@ class _ProductFormScreenState extends State<ProductFormScreen> {
                       ),
                       const SizedBox(height: 12),
 
-                      // Stock
                       _fieldLabel('Stock', required: true),
                       const SizedBox(height: 8),
                       TextFormField(
@@ -190,7 +181,6 @@ class _ProductFormScreenState extends State<ProductFormScreen> {
                       ),
                       const SizedBox(height: 12),
 
-                      // Thumbnail
                       _fieldLabel('Thumbnail URL'),
                       const SizedBox(height: 8),
                       TextFormField(
@@ -198,7 +188,6 @@ class _ProductFormScreenState extends State<ProductFormScreen> {
                         decoration: InputDecoration(hintText: 'https://...'),
                         validator: (v) {
                           if (v != null && v.trim().isNotEmpty) {
-                            // validación mínima de URL
                             final uri = Uri.tryParse(v);
                             if (uri == null || (!uri.isAbsolute)) return 'URL inválida';
                           }
@@ -208,7 +197,6 @@ class _ProductFormScreenState extends State<ProductFormScreen> {
 
                       const SizedBox(height: 20),
 
-                      // Botón
                       SizedBox(
                         height: 48,
                         child: ElevatedButton(
