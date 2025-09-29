@@ -20,4 +20,4 @@ Arquitectura:
 
 Notas:
 - Búsqueda: implementada localmente filtrando por `title`.
-- Validaciones: el formulario valida campos obligatorios y el precio.
+- Validaciones: el formulario valida campos obligatorios, como el precio.
